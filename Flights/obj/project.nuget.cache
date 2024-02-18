@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "MZW4h8o+hYOnXWK5jEZBUCNK3FUS2rhbNymp/85wlGxnyXR0anX4cosdvqivzCuFIqTmU/iDiwd+z1cGfq85hg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lenovo\\github\\flights-portal\\Flights\\FlightsSearchPortal.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.1\\microsoft.netcore.app.ref.8.0.1.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.1\\microsoft.windowsdesktop.app.ref.8.0.1.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.1\\microsoft.aspnetcore.app.ref.8.0.1.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.1\\microsoft.netcore.app.host.win-x64.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
