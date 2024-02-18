@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "MZW4h8o+hYOnXWK5jEZBUCNK3FUS2rhbNymp/85wlGxnyXR0anX4cosdvqivzCuFIqTmU/iDiwd+z1cGfq85hg==",
+  "dgSpecHash": "o2z9rxV1pd21Wrcxy6Sakkr4lYc3tjDdnE1aMXz5eroB7/E+89LaQEUNnCTk3qfX+20wVD9DC0k/+a/VCrNFcg==",
   "success": true,
   "projectFilePath": "C:\\Users\\lenovo\\github\\flights-portal\\Flights\\FlightsSearchPortal.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.1\\microsoft.netcore.app.ref.8.0.1.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.1\\microsoft.windowsdesktop.app.ref.8.0.1.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.1\\microsoft.aspnetcore.app.ref.8.0.1.nupkg.sha512",

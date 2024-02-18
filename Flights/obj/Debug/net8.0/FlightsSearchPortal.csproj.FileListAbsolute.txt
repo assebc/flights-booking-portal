@@ -25,3 +25,10 @@ C:\Users\lenovo\github\flights-portal\Flights\obj\Debug\net8.0\FlightsSearchPort
 C:\Users\lenovo\github\flights-portal\Flights\obj\Debug\net8.0\FlightsSearchPortal.genruntimeconfig.cache
 C:\Users\lenovo\github\flights-portal\Flights\obj\Debug\net8.0\ref\FlightsSearchPortal.dll
 C:\Users\lenovo\github\flights-portal\Flights\bin\Debug\net8.0\FlightsSearchPortal.staticwebassets.runtime.json
+C:\Users\lenovo\github\flights-portal\Flights\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\lenovo\github\flights-portal\Flights\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\lenovo\github\flights-portal\Flights\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\lenovo\github\flights-portal\Flights\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\lenovo\github\flights-portal\Flights\obj\Debug\net8.0\FlightsSearchPortal.csproj.AssemblyReference.cache
+C:\Users\lenovo\github\flights-portal\Flights\obj\Debug\net8.0\FlightsSearchPortal.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\lenovo\github\flights-portal\Flights\obj\Debug\net8.0\FlightsS.40DB02EB.Up2Date
