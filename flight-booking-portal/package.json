@@ -34,6 +34,7 @@
     "@angular/compiler-cli": "^17.0.0",
     "@types/express": "^4.17.17",
     "@types/node": "^18.18.0",
+    "ng-openapi-gen": "^0.51.0",
     "typescript": "~5.2.2"
   }
 }

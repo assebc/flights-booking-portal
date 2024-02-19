@@ -4,10 +4,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
+});
 
 var app = builder.Build();
 
+app.UseCors(builder => builder.WithOrigins("*"));
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

@@ -1,15 +1,20 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Flight } from './models/flight.model';
+import { FlightService } from '../api/services';
+import { Flight } from '../api/models';
 
 @Component({
   selector: 'app-search-flights',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './search-flights.component.html',
   styleUrl: './search-flights.component.scss'
 })
 export class SearchFlightsComponent {
+  searchResults: Flight[] = [];
 
-  searchResult: Flight[] = []
+  constructor(private flightService: FlightService) {}
+
+  search() {
+    this.flightService.searchFlight().subscribe((flights: Flight[]) => { 
+      this.searchResults = flights; 
+    });
+  }
 }

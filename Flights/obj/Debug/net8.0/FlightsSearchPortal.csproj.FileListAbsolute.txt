@@ -32,3 +32,4 @@ C:\Users\lenovo\github\flights-portal\Flights\bin\Debug\net8.0\Swashbuckle.AspNe
 C:\Users\lenovo\github\flights-portal\Flights\obj\Debug\net8.0\FlightsSearchPortal.csproj.AssemblyReference.cache
 C:\Users\lenovo\github\flights-portal\Flights\obj\Debug\net8.0\FlightsSearchPortal.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\lenovo\github\flights-portal\Flights\obj\Debug\net8.0\FlightsS.40DB02EB.Up2Date
+C:\Users\lenovo\github\flights-portal\Flights\bin\Debug\net8.0\global.json
