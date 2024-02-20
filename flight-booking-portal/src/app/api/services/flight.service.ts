@@ -9,6 +9,10 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { findFlight } from '../fn/flight/find-flight';
+import { FindFlight$Params } from '../fn/flight/find-flight';
+import { findFlight$Plain } from '../fn/flight/find-flight-plain';
+import { FindFlight$Plain$Params } from '../fn/flight/find-flight-plain';
 import { Flight } from '../models/flight';
 import { searchFlight } from '../fn/flight/search-flight';
 import { SearchFlight$Params } from '../fn/flight/search-flight';
@@ -65,6 +69,53 @@ export class FlightService extends BaseService {
   searchFlight(params?: SearchFlight$Params, context?: HttpContext): Observable<Array<Flight>> {
     return this.searchFlight$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<Flight>>): Array<Flight> => r.body)
+    );
+  }
+
+  /** Path part for operation `findFlight()` */
+  static readonly FindFlightPath = '/Flight/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findFlight$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findFlight$Plain$Response(params: FindFlight$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Flight>> {
+    return findFlight$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findFlight$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findFlight$Plain(params: FindFlight$Plain$Params, context?: HttpContext): Observable<Flight> {
+    return this.findFlight$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Flight>): Flight => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findFlight()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findFlight$Response(params: FindFlight$Params, context?: HttpContext): Observable<StrictHttpResponse<Flight>> {
+    return findFlight(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findFlight$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findFlight(params: FindFlight$Params, context?: HttpContext): Observable<Flight> {
+    return this.findFlight$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Flight>): Flight => r.body)
     );
   }
 

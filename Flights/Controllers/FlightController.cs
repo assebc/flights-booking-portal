@@ -16,10 +16,9 @@ namespace FlightsSearchPortal.Controllers
             _logger = logger;
         }
 
-        private Random random = new Random();
+        private static Random random = new Random();
 
-        [HttpGet]
-        public IEnumerable<Flight> Search() => new Flight[]
+        private static Flight[] flights = new Flight[]
         {
             new(Guid.NewGuid(),
                 "American Airlines",
@@ -42,5 +41,11 @@ namespace FlightsSearchPortal.Controllers
                 new TimePlace("Vizzola-Ticino", DateTime.Now.AddHours(random.Next(4, 10))),
                 random.Next(1, 853))
         };
+
+        [HttpGet]
+        public IEnumerable<Flight> Search() => flights;
+
+        [HttpGet("{id}")]
+        public Flight Find(Guid id) => flights.SingleOrDefault(f => f.Id == id);
     }
 }

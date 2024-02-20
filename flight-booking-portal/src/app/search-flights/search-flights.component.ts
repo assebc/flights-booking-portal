@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FlightService } from './../api/services/flight.service';
 import { Flight } from '../api/models';
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-search-flights',

@@ -1,0 +1,4 @@
+<ng-container *ngIf="{ flight: flight$ | async } as vm">
+  <h6>From: {{ vm.flight.departure.place }}</h6>
+  <h6>To: {{ vm.flight.arrival.place }}</h6>
+</ng-container>

@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Flights": {
+    "Flights": {  
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
