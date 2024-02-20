@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import { FlightService } from '../api/services';
+import { FlightService } from './../api/services/flight.service';
 import { Flight } from '../api/models';
+import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-search-flights',
-  templateUrl: './search-flights.component.html',
-  styleUrl: './search-flights.component.scss'
+  templateUrl: './search-flights.component.html'
 })
 export class SearchFlightsComponent {
-  searchResults: Flight[] = [];
 
-  constructor(private flightService: FlightService) {}
+  searchResult$: Observable<Flight[]> = of([]);
+
+  constructor(private flightService: FlightService) { }
 
   search() {
-    this.flightService.searchFlight().subscribe((flights: Flight[]) => { 
-      this.searchResults = flights; 
-    });
+    this.searchResult$ = this.flightService.searchFlight({});
   }
 }

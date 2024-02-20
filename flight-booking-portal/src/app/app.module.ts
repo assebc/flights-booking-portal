@@ -1,14 +1,17 @@
-import { NgModule } from "@angular/core";
-import { AppComponent } from "./app.component";
-import { SearchFlightsComponent } from "./search-flights/search-flights.component";
-import { BrowserModule } from "@angular/platform-browser";
-import { HttpClientModule } from "@angular/common/http";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+
+import { AppComponent } from './app.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { SearchFlightsComponent } from './search-flights/search-flights.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavMenuComponent,
     SearchFlightsComponent,
   ],
   imports: [
@@ -16,7 +19,11 @@ import { RouterModule } from "@angular/router";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule.forRoot([
+      { path: '', component: SearchFlightsComponent, pathMatch: 'full' },
+      { path: 'search-flights', component: SearchFlightsComponent },
+
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

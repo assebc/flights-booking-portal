@@ -10,8 +10,10 @@ import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
 import { Flight } from '../models/flight';
-import { searchFlight, SearchFlight$Params } from '../fn/flight/search-flight';
-import { searchFlight$Plain, SearchFlight$Plain$Params } from '../fn/flight/search-flight-plain';
+import { searchFlight } from '../fn/flight/search-flight';
+import { SearchFlight$Params } from '../fn/flight/search-flight';
+import { searchFlight$Plain } from '../fn/flight/search-flight-plain';
+import { SearchFlight$Plain$Params } from '../fn/flight/search-flight-plain';
 
 @Injectable({ providedIn: 'root' })
 export class FlightService extends BaseService {
