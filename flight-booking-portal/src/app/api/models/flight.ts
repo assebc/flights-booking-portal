@@ -5,7 +5,7 @@ export interface Flight {
   airline?: string | null;
   arrival?: TimePlace;
   departure?: TimePlace;
-  id?: string;
+  id?: number;
   price?: string | null;
   remainingNumberOfSeats?: number;
 }

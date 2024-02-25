@@ -1,7 +1,7 @@
 namespace FlightsSearchPortal.Models
 {
     public record Flight(
-        Guid Id,
+        int Id,
         string Airline,
         string Price,
         TimePlace Departure,

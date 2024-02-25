@@ -14,6 +14,6 @@ export class SearchFlightsComponent {
   constructor(private flightService: FlightService) { }
 
   search() {
-    this.searchResult$ = this.flightService.searchFlight({});
+    this.searchResult$ = this.flightService.searchFlight();
   }
 }

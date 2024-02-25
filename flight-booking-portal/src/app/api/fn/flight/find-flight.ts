@@ -9,7 +9,7 @@ import { RequestBuilder } from '../../request-builder';
 import { Flight } from '../../models/flight';
 
 export interface FindFlight$Params {
-  id: string;
+  id: number;
 }
 
 export function findFlight(http: HttpClient, rootUrl: string, params: FindFlight$Params, context?: HttpContext): Observable<StrictHttpResponse<Flight>> {
