@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PassengerService } from '../api/services';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -19,10 +19,10 @@ export class RegisterPassengerComponent {
     private fb: FormBuilder
   ){
     this.form = this.fb.group({
-      email: [''],
-      firstName: [''],
-      lastName: [''],
-      isFemale: [true]
+      email: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(100)])],
+      firstName: ['', Validators.minLength(2), Validators.maxLength(30)],
+      lastName: ['', Validators.minLength(2), Validators.maxLength(30)],
+      isFemale: [true, Validators.required]
     });
   }
 
@@ -32,6 +32,8 @@ export class RegisterPassengerComponent {
   get isFemale() { return this.form.get('isFemale')?.value ; }
 
   register(){
+    if(this.form.invalid) { return; }
+
     this.passengerService.registerPassenger({ body: this.form.value })
       .subscribe(this.login, e => { if(e.status !== 404 ){ console.error(e); }});
   }

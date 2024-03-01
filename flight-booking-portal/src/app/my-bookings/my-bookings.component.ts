@@ -19,7 +19,7 @@ export class MyBookingsComponent {
       .subscribe(r => this.bookings = r);
   }
 
-  cancel(booking: BookingRm) {
+  cancel(booking: Booking) {
     const dto: NewBook = {
       flightId: booking.flightId,
       numberOfSeats: booking.numberOfBookedSeats,

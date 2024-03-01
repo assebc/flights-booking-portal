@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Flight } from '../api/models/flight';
 import { FlightService } from '../api/services/flight.service';
 import { AuthService } from '../auth/auth.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewBook } from '../api/models';
 
 @Component({
@@ -23,12 +23,14 @@ export class BookFlightComponent {
     private flightService: FlightService
   ) {
     this.initBookFlight();
-    this.form = this.fb.group({ numberOfSeats: [1] });
+    this.form = this.fb.group({ numberOfSeats: [1, Validators.required] });
   }
 
   get numberOfSeats() { return this.form.get('numberOfSeats')?.value; }
 
   book() {
+    if(this.form.invalid) { return; }
+
     if (this.authService.currentUser === null) { 
       this.router.navigate(['/register-passenger']); 
       return; 
@@ -48,7 +50,23 @@ export class BookFlightComponent {
     this.activeRoute.paramMap.subscribe(params => this.flightId = +(params.get('flightId') ?? 0));
     this.flightService.findFlight({id: this.flightId}).subscribe(flight => {
       if (flight === null) { this.router.navigate(['/search-flights']); }
-      else { this.flight = flight; } 
+      else { this.flight = flight, this.handleError} 
     });
+  }
+
+  private handleError = (error: any) => {
+    if(error.status === 404) {
+      alert('Flight not found');
+      this.router.navigate(['/search-flights']);
+    }
+
+    if(error.status === 409){
+      console.log('Booking failed');
+      alert(JSON.parse(error.error).message)
+    }
+
+    console.log("Response Error. Status: ", error.status);
+    console.log("Response Error. Status Text: ", error.statusText);
+    console.log(error);
   }
 }

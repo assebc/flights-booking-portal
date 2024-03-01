@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FlightsSearchPortal.Views;
 
-public record NewPassenger(
+public record PassengerDTO(
     [Required][EmailAddress] string Email,
     [Required][MinLength(2)][MaxLength(35)] string FirstName,
     [Required][MinLength(2)][MaxLength(35)] string LastName,

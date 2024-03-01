@@ -1,4 +1,5 @@
-using Microsoft.OpenApi.Models;
+using FlightsSearchPortal.Data;
+using FlightsSearchPortal.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,38 @@ builder.Services.AddSwaggerGen(c =>
     c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"] + e.ActionDescriptor.RouteValues["controller"]}");
 });
 
+builder.Services.AddSingleton<Entities>();
+
 var app = builder.Build();
+
+var entities = app.Services.CreateScope().ServiceProvider.GetService<Entities>();
+var random = new Random();
+
+Flight[] flightsToSeed = new Flight[]
+{
+    new(1,
+        "American Airlines",
+        random.Next(90, 500).ToString(),
+        new TimePlace("Los Angeles", DateTime.Now.AddHours(random.Next(1, 3))),
+        new TimePlace("Istanbul", DateTime.Now.AddHours(random.Next(4, 10))),
+        random.Next(1, 853)),
+
+    new(2,
+        "Deutsche BA",
+        random.Next(90, 500).ToString(),
+        new TimePlace("Munchen", DateTime.Now.AddHours(random.Next(1, 3))),
+        new TimePlace("Schinpol", DateTime.Now.AddHours(random.Next(4, 10))),
+        random.Next(1, 853)),
+
+    new(3,
+        "British Airways",
+        random.Next(90, 500).ToString(),
+        new TimePlace("London, Englang", DateTime.Now.AddHours(random.Next(1, 3))),
+        new TimePlace("Vizzola-Ticino", DateTime.Now.AddHours(random.Next(4, 10))),
+        random.Next(1, 853))
+};
+entities.flights.AddRange(flightsToSeed);
+
 
 app.UseCors(builder => builder
     .WithOrigins("*")

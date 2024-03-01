@@ -1,6 +1,8 @@
-using FlightsSearchPortal.Models;
+using FlightsSearchPortal.Domain.Entities;
+using FlightsSearchPortal.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using FlightsSearchPortal.Views;
+using FlightsSearchPortal.Data;
 
 namespace FlightsSearchPortal.Controllers
 {
@@ -8,25 +10,30 @@ namespace FlightsSearchPortal.Controllers
     [Route("[controller]")]
     public class PassengerController: ControllerBase
     {
+        private readonly Entities _entities;
 
-        private static IList<Passenger> _passengers = new List<Passenger>();
+        public PassengerController(Entities entities)
+        {
+            _entities = entities;
+        }
         
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public IActionResult Register(NewPassenger newPassenger)
+        public IActionResult Register(PassengerDTO newPassenger)
         {
-           _passengers.Add(new Passenger(newPassenger.Email, newPassenger.FirstName, newPassenger.LastName, newPassenger.Gender));
-           return CreatedAtAction(nameof(Find), new { email = newPassenger.Email });
+           var passenger = new Passenger(newPassenger.Email, newPassenger.FirstName, newPassenger.LastName, newPassenger.Gender);
+           _entities.passengers.Add(passenger);
+           return CreatedAtAction(nameof(Find), new { email = passenger.Email });
         }
 
         [HttpGet("{email}")]
         public IActionResult Find(string email)
         {
-            var passenger =  _passengers.FirstOrDefault(p => p.Email == email);
+            var passenger =  _entities.passengers.FirstOrDefault(p => p.Email == email);
             if (passenger == null) return NotFound();
-            return Ok(passenger);
+            return Ok(new PassengerRm(passenger.Email, passenger.FirstName, passenger.LastName, passenger.Gender));
         }
     }
 }
