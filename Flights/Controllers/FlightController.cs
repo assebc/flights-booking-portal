@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using FlightsSearchPortal.Data;
 using FlightsSearchPortal.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -12,15 +14,10 @@ namespace FlightSearchPortal.Controllers
     [Route("[controller]")]
     public class FlightController : ControllerBase
     {
-        private readonly ILogger<FlightController> _logger;
-
         private readonly Entities _entities;
 
-
-        public FlightController(ILogger<FlightController> logger, 
-            Entities entities)
+        public FlightController(Entities entities)
         {
-            _logger = logger;
             _entities = entities;
         }
 
@@ -30,8 +27,6 @@ namespace FlightSearchPortal.Controllers
         [ProducesResponseType(typeof(IEnumerable<FlightRm>), 200)]
         public IEnumerable<FlightRm> Search([FromQuery] FlightSearchParameters @params)
         {
-
-            _logger.LogInformation("Searching for a flight for: {Destination}", @params.Destination);
 
             IQueryable<Flight> flights = _entities.Flights;
 
@@ -67,9 +62,9 @@ namespace FlightSearchPortal.Controllers
         }
         
 
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
         [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         [ProducesResponseType(typeof(FlightRm),200)]
         public ActionResult<FlightRm> Find(int id)
@@ -92,10 +87,10 @@ namespace FlightSearchPortal.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(500)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public IActionResult Book(BookDTO dto)
         {
             System.Diagnostics.Debug.WriteLine($"Booking a new flight {dto.FlightId}");

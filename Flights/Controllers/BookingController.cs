@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using FlightsSearchPortal.Data;
 using FlightsSearchPortal.Domain.Errors;
 using FlightsSearchPortal.ViewModels;
