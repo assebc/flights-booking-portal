@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FlightService } from './../api/services/flight.service';
-import { Flight } from '../api/models';
 import { Observable, of } from 'rxjs';
+import { FlightRm } from '../api/models';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-search-flights',
@@ -9,11 +10,23 @@ import { Observable, of } from 'rxjs';
 })
 export class SearchFlightsComponent {
 
-  searchResult$: Observable<Flight[]> = of([]);
+  form: FormGroup = new FormGroup({});
+  searchResult$: Observable<FlightRm[]> = of([]);
 
-  constructor(private flightService: FlightService) { }
+  constructor(
+    private flightService: FlightService,
+    private fb: FormBuilder) {
+    this.form = this.fb.group({
+      from: [''],
+      destination: [''],
+      fromDate: [''],
+      toDate: [''],
+      numberOfPassengers: [1]
+    });
+    this.search();
+  }
 
   search() {
-    this.searchResult$ = this.flightService.searchFlight();
+    this.searchResult$ = this.flightService.searchFlight(this.form.value);
   }
 }

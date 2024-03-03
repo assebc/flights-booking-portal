@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Flight } from '../api/models/flight';
 import { FlightService } from '../api/services/flight.service';
 import { AuthService } from '../auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NewBook } from '../api/models';
+import { BookDto, FlightRm } from '../api/models';
 
 @Component({
   selector: 'app-book-flight',
@@ -12,7 +11,7 @@ import { NewBook } from '../api/models';
 })
 export class BookFlightComponent {
   flightId: number = 0;
-  flight: Flight = {};
+  flight: FlightRm = {};
   form: FormGroup = new FormGroup({});
 
   constructor(
@@ -31,12 +30,7 @@ export class BookFlightComponent {
   book() {
     if(this.form.invalid) { return; }
 
-    if (this.authService.currentUser === null) { 
-      this.router.navigate(['/register-passenger']); 
-      return; 
-    }
-
-    const booking: NewBook = {
+    const booking: BookDto = {
       flightId: this.flightId,
       passengerEmail: this.authService.currentUser?.email,
       numberOfSeats: this.numberOfSeats
@@ -46,7 +40,6 @@ export class BookFlightComponent {
   }
 
   private initBookFlight() {
-    if (!this.authService.currentUser){ this.router.navigate(['/register-passenger']) };
     this.activeRoute.paramMap.subscribe(params => this.flightId = +(params.get('flightId') ?? 0));
     this.flightService.findFlight({id: this.flightId}).subscribe(flight => {
       if (flight === null) { this.router.navigate(['/search-flights']); }

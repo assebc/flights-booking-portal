@@ -8,12 +8,12 @@ import { RequestBuilder } from '../../request-builder';
 
 import { BookDto } from '../../models/book-dto';
 
-export interface BookFlight$Params {
+export interface CancelBooking$Params {
       body?: BookDto
 }
 
-export function bookFlight(http: HttpClient, rootUrl: string, params?: BookFlight$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, bookFlight.PATH, 'post');
+export function cancelBooking(http: HttpClient, rootUrl: string, params?: CancelBooking$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, cancelBooking.PATH, 'delete');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
@@ -28,4 +28,4 @@ export function bookFlight(http: HttpClient, rootUrl: string, params?: BookFligh
   );
 }
 
-bookFlight.PATH = '/Flight';
+cancelBooking.PATH = '/Booking';

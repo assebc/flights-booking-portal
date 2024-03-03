@@ -1,7 +1,7 @@
 using FlightsSearchPortal.Domain.Entities;
 using FlightsSearchPortal.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using FlightsSearchPortal.Views;
+using FlightsSearchPortal.Dtos;
 using FlightsSearchPortal.Data;
 
 namespace FlightsSearchPortal.Controllers
@@ -21,17 +21,18 @@ namespace FlightsSearchPortal.Controllers
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public IActionResult Register(PassengerDTO newPassenger)
+        public IActionResult Register(PassengerDTO dto)
         {
-           var passenger = new Passenger(newPassenger.Email, newPassenger.FirstName, newPassenger.LastName, newPassenger.Gender);
-           _entities.passengers.Add(passenger);
+           var passenger = new Passenger(dto.Email, dto.FirstName, dto.LastName, dto.Gender);
+           _entities.Passengers.Add(passenger);
+           _entities.SaveChanges();
            return CreatedAtAction(nameof(Find), new { email = passenger.Email });
         }
 
         [HttpGet("{email}")]
         public IActionResult Find(string email)
         {
-            var passenger =  _entities.passengers.FirstOrDefault(p => p.Email == email);
+            var passenger =  _entities.Passengers.FirstOrDefault(p => p.Email == email);
             if (passenger == null) return NotFound();
             return Ok(new PassengerRm(passenger.Email, passenger.FirstName, passenger.LastName, passenger.Gender));
         }
