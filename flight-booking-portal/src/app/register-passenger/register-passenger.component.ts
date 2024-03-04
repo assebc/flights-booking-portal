@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PassengerService } from '../api/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-register-passenger',
   templateUrl: './register-passenger.component.html'
 })
-export class RegisterPassengerComponent {
+export class RegisterPassengerComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
   requestedUrl?: string;
@@ -21,7 +21,9 @@ export class RegisterPassengerComponent {
     private activatedRoute: ActivatedRoute
   ){
     this.activatedRoute.params.subscribe(p => this.requestedUrl = p['requestedUrl']);
+  }
 
+  ngOnInit(){
     this.form = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(100)])],
       firstName: ['', Validators.minLength(2), Validators.maxLength(30)],
@@ -29,11 +31,6 @@ export class RegisterPassengerComponent {
       isFemale: [true, Validators.required]
     });
   }
-
-  get email() { return this.form.get('email')?.value ; }
-  get firstName() { return this.form.get('firstName')?.value ; }
-  get lastName() { return this.form.get('lastName')?.value ; }
-  get isFemale() { return this.form.get('isFemale')?.value ; }
 
   register(){
     if(this.form.invalid) { return; }
@@ -43,13 +40,13 @@ export class RegisterPassengerComponent {
   }
 
   checkPassenger(){
-    const params = { email: this.email };
+    const params = { email: this.form.get('email')?.value };
     this.passengerService.findPassenger(params)
       .subscribe(this.login);
   }
 
   private login = () => {
-    this.authService.loginUser({ email: this.email });
+    this.authService.loginUser({ email: this.form.get('email')?.value });
     this.router.navigate([this.requestedUrl ?? '/search-flights']);
   };
 }

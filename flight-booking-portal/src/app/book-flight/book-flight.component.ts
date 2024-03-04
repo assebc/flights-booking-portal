@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService } from '../api/services/flight.service';
 import { AuthService } from '../auth/auth.service';
@@ -9,7 +9,7 @@ import { BookDto, FlightRm } from '../api/models';
   selector: 'app-book-flight',
   templateUrl: './book-flight.component.html',
 })
-export class BookFlightComponent {
+export class BookFlightComponent implements OnInit{
   flightId: number = 0;
   flight: FlightRm = {};
   form: FormGroup = new FormGroup({});
@@ -20,7 +20,9 @@ export class BookFlightComponent {
     private authService: AuthService,
     private fb: FormBuilder,
     private flightService: FlightService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.initBookFlight();
     this.form = this.fb.group({ numberOfSeats: [1, Validators.required] });
   }
@@ -29,6 +31,10 @@ export class BookFlightComponent {
 
   book() {
     if(this.form.invalid) { return; }
+    if(this.authService.currentUser?.email === undefined) { 
+      this.router.navigate(['/register-passenger']); 
+      return; 
+    }
 
     const booking: BookDto = {
       flightId: this.flightId,

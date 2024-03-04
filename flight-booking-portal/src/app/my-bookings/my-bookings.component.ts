@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './../auth/auth.service';
 import { BookingService } from '../api/services/booking.service';
 import { BookDto, BookingRm } from '../api/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-bookings',
@@ -13,10 +14,15 @@ export class MyBookingsComponent {
 
   constructor(
     private bookingService: BookingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
+    if(!this.authService.currentUser) { 
+      this.router.navigate(['/register-passenger']); 
+      return; 
+    }
 
-    this.bookingService.listBooking({ email: this.authService.currentUser?.email! })
+    this.bookingService.listBooking({ email: this.authService.currentUser?.email })
       .subscribe(r => this.bookings = r);
   }
 
