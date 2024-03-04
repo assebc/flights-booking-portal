@@ -2,7 +2,7 @@
 
 App developed during full stack course made by tutorials.EU under the following frameworks (ASP.NET, Angular).
 
-This platform has a total of 5 pages with an intuitive design for a simple but effective use.
+This platform has a total of 4 pages with an intuitive design for a simple but effective use.
 
 This application creates the possibilities of:
 - Register/login on the web platform
@@ -17,7 +17,7 @@ npm install
 ng serve
 ```
 
-#### Flights List page
+### Flights List page
 
 In the images below we can see the `main page` of the `platform` where you can see all available flights to book.
 
@@ -40,7 +40,7 @@ To `book seats` for a `flight`.
   
 </details>
 
-### Booked Flights page
+### My bookings page
 
 Display of `booked seats` and `booked flights`.
 <details>
